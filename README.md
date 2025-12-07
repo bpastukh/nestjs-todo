@@ -32,6 +32,21 @@
 $ pnpm install
 ```
 
+## Run PostgreSQL with Docker Compose
+
+```bash
+# copy and adjust credentials as needed
+$ cp .env.example .env
+
+# start services in the background
+$ docker compose up -d 
+
+# stop the container (data persists in the named volume)
+$ docker compose down
+```
+
+Adminer will be available at http://localhost:${ADMINER_PORT:-8080} (default credentials from `.env`).
+
 ## Compile and run the project
 
 ```bash
