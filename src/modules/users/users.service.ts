@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
@@ -19,6 +19,13 @@ export class UsersService {
       ...payload,
       password: hashedPassword,
     });
-    return this.usersRepository.save(user);
+    try {
+      return await this.usersRepository.save(user);
+    } catch (error) {
+      if (error.code === '23505') {
+        throw new BadRequestException('User with this name already exists');
+      }
+      throw error;
+    }
   }
 }
