@@ -3,6 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_PIPE } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './modules/users/users.module';
+import { TasksModule } from './modules/tasks/tasks.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { UsersModule } from './modules/users/users.module';
       }),
     }),
     UsersModule,
+    TasksModule,
   ],
   controllers: [],
   providers: [
